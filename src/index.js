@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './styles/index.css';
+import './Sass/index.scss';
 import App from './pages/App';
 import Home from './pages/Home';
 import Signin from './pages/Signin';
@@ -20,9 +20,7 @@ root.render(
           // <Route path="signin" element={<Signin />} />
           // <Route path="user/:userId" element={<User />} />
           // <Route path="*" element={<Error />} />
-          //{' '}
         </Route>
-        //{' '}
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
