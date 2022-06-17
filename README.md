@@ -5,15 +5,19 @@ This project was developped for the project 13 of the OpenClassrooms React Dev p
 ## Prerequisites
 
 This project works simultaniously with a local API, that you can find [here](https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API).
-The API runs with : ![image]({https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white}).
+The API runs with : ![image](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white).
 
-![image]({https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white}) v16.13
-![image]({https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB}) v18.1
-![image]({https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white}) v6.3
-![image]({https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white}) v4.2
+![image](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) v16.13
+
+![image](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) v18.1
+
+![image](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white) v6.3
+
+![image](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white) v4.2
 
 I develop with
-![image]({https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white})
+
+![image](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
 
 ## Available scripts
 
