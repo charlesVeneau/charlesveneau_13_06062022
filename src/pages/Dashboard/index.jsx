@@ -1,7 +1,9 @@
 import data from '../../data.json';
+import { useDispatch } from 'react-redux';
+import { signOut } from '../../store/slices/authorizationThunk';
 import Account from '../../components/Account/index.jsx';
 
-function User() {
+function Dashboard() {
   const user = data.user;
   return (
     <main className="main bg-dark">
@@ -22,4 +24,4 @@ function User() {
   );
 }
 
-export default User;
+export default Dashboard;
