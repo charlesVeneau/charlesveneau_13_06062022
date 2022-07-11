@@ -1,3 +1,5 @@
+@import '../../Sass/variables';
+
 .sign-in {
   &-button {
     display: block;
@@ -6,8 +8,8 @@
     font-size: 1.1rem;
     font-weight: bold;
     margin-top: 1rem;
-    border-color: #00bc77;
-    background-color: #00bc77;
+    border-color: $secondary;
+    background-color: $secondary;
     color: #fff;
   }
 
@@ -22,6 +24,9 @@
 
   &-icon {
     font-size: 5rem;
+  }
+  &-error {
+    color: $error;
   }
 }
 .input {
@@ -45,6 +50,13 @@
     input {
       padding: 5px;
       font-size: 1.2rem;
+      &.has-error {
+        border: 1px solid $error;
+      }
     }
   }
+}
+
+.isHidden {
+  display: none;
 }
