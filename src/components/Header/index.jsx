@@ -1,5 +1,7 @@
 import Logo from '../../assets/images/argentBankLogo.png';
 import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { signOut } from '../../store/slices/authorizationThunk';
 
 function Header() {
   return (
