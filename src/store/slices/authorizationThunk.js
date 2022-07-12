@@ -1,3 +1,4 @@
+import { Navigate } from 'react-router-dom';
 import { createAsyncThunk, isRejectedWithValue } from '@reduxjs/toolkit';
 import { getToken, setToken, removeToken } from '../../utils/HelperFunctions';
 import history from '../../utils/history';
@@ -12,6 +13,7 @@ export const fetchUserData = createAsyncThunk(
         method: 'post',
         url: 'localhost:3001/api/v1/user/profile',
         headers: {
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${accessToken}`,
         },
       });
@@ -23,26 +25,34 @@ export const fetchUserData = createAsyncThunk(
   }
 );
 
-export const login = (currentUser) => {
-  createAsyncThunk('authorization/login', async (payload) => {
+export const login = createAsyncThunk(
+  'authorization/login',
+  async (credentials) => {
+    const { email, password } = credentials;
+    console.log(email);
     try {
       const response = await axios({
-        method: 'post',
-        url: 'localhost:3001/api/v1/user/login',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+        url: 'http://localhost:3001/api/v1/user/login',
         data: {
-          username: currentUser.username,
-          password: currentUser.password,
+          email: email,
+          password: password,
         },
       });
+      console.log(response.data);
       setToken(response.data.body.token);
       history.push('/dashboard');
       return response.data;
     } catch (err) {
+      console.log(err);
       removeToken();
       return isRejectedWithValue('');
     }
-  });
-};
+  }
+);
 
 export const signOut = createAsyncThunk('authorization/signOut', async () => {
   removeToken();
