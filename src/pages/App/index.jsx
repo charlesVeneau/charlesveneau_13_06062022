@@ -8,7 +8,6 @@ import Error from '../Error';
 import { Routes, Route } from 'react-router-dom';
 import PrivateRoute from '../../PrivateRoutes';
 import { useSelector } from 'react-redux';
-import { Outlet } from 'react-router-dom';
 
 function App() {
   const token = useSelector((state) => state.authorization.token);

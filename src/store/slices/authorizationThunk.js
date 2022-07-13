@@ -1,4 +1,3 @@
-import { Navigate } from 'react-router-dom';
 import { createAsyncThunk, isRejectedWithValue } from '@reduxjs/toolkit';
 import { getToken, setToken, removeToken } from '../../utils/HelperFunctions';
 import history from '../../utils/history';
@@ -11,7 +10,7 @@ export const fetchUserData = createAsyncThunk(
       const accessToken = getToken();
       const response = await axios({
         method: 'post',
-        url: 'localhost:3001/api/v1/user/profile',
+        url: 'http://localhost:3001/api/v1/user/profile',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${accessToken}`,
@@ -29,7 +28,6 @@ export const login = createAsyncThunk(
   'authorization/login',
   async (credentials) => {
     const { email, password } = credentials;
-    console.log(email);
     try {
       const response = await axios({
         headers: {

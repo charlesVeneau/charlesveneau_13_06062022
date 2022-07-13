@@ -12,7 +12,9 @@ function PrivateRoute({ token, ...rest }) {
   if (token) {
     return <Outlet />;
   } else {
-    <Navigate to="/login" state={{ location }} />;
+    console.log('no token');
+    console.log(location);
+    <Navigate to="/login" />;
   }
 }
 
