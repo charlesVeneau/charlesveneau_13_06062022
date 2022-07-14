@@ -1,4 +1,5 @@
 import { createAsyncThunk, isRejectedWithValue } from '@reduxjs/toolkit';
+import { useLocation } from 'react-router-dom';
 import { getToken, setToken, removeToken } from '../../utils/HelperFunctions';
 import history from '../../utils/history';
 import axios from 'axios';
@@ -40,9 +41,9 @@ export const login = createAsyncThunk(
           password: password,
         },
       });
-      console.log(response.data);
       setToken(response.data.body.token);
       history.push('/dashboard');
+      window.location.reload();
       return response.data;
     } catch (err) {
       console.log(err);
@@ -54,4 +55,6 @@ export const login = createAsyncThunk(
 
 export const signOut = createAsyncThunk('authorization/signOut', async () => {
   removeToken();
+  history.push('/');
+  window.location.reload();
 });

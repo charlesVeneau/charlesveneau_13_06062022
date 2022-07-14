@@ -22,7 +22,6 @@ export const authSlice = createSlice({
       state.loading = true;
     },
     [login.fulfilled]: (state, action) => {
-      // console.log(action);
       const { accessToken, status } = action.payload;
       state.loading = false;
       state.status = status;

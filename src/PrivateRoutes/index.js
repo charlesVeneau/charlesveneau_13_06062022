@@ -1,10 +1,9 @@
 import { useSelector } from 'react-redux';
-import { Outlet, Navigate, useLocation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 function PrivateRoute({ token, ...rest }) {
   const { loading } = useSelector((state) => state.authorization);
-  const location = useLocation();
-
+  console.log(`private token : ${token}`);
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -12,9 +11,11 @@ function PrivateRoute({ token, ...rest }) {
   if (token) {
     return <Outlet />;
   } else {
-    console.log('no token');
-    console.log(location);
-    <Navigate to="/login" />;
+    return (
+      <div>
+        Une erreur est survenue. Veuillez nous excuser pour la géne occasionnée.
+      </div>
+    );
   }
 }
 
