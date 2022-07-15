@@ -20,7 +20,7 @@ export const fetchUserData = createAsyncThunk(
       return { ...response.data, accessToken };
     } catch (err) {
       removeToken();
-      return isRejectedWithValue('');
+      return isRejectedWithValue(400);
     }
   }
 );
@@ -46,15 +46,14 @@ export const login = createAsyncThunk(
       window.location.reload();
       return response.data;
     } catch (err) {
-      console.log(err);
       removeToken();
-      return isRejectedWithValue('');
+      return isRejectedWithValue(400);
     }
   }
 );
 
 export const signOut = createAsyncThunk('authorization/signOut', async () => {
-  removeToken();
   history.push('/');
   window.location.reload();
+  removeToken();
 });

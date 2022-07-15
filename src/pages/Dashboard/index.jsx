@@ -11,9 +11,20 @@ function Dashboard() {
         <h1>
           Welcome back
           <br />
-          Tony Jarvis!
+          {/* <p>
+            <span contentEditable="false" id="firstName">
+              Tony
+            </span>{' '}
+            <span contentEditable="false" id="lastName">
+              Jarvis
+            </span>
+            !
+          </p> */}
         </h1>
-        <button className="edit-button">Edit Name</button>
+
+        <button className="edit-button" data-edit="false">
+          Edit Name
+        </button>
       </section>
       <h2 className="sr-only">Accounts</h2>
       {user &&

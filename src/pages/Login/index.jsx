@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { getToken } from '../../utils/HelperFunctions';
 import { login } from '../../store/slices/authorizationThunk';
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,16 +8,17 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { token, loading } = useSelector((state) => state.authorization);
+  const { token, loading, status } = useSelector(
+    (state) => state.authorization
+  );
 
   if (token || getToken()) {
     history.push('/dashboard');
+    window.location.reload();
   }
 
   function handleLogin(e) {
     e.preventDefault();
-    console.log('login');
     const errorMsg = document.querySelector('.sign-in-error');
     const emailInput = document.querySelector('#email');
     const passwordInput = document.querySelector('#password');
@@ -27,10 +27,6 @@ function Login() {
       passwordInput.classList.add('has-error');
       errorMsg.classList.remove('isHidden');
     } else {
-      emailInput.classList.remove('has-error');
-      passwordInput.classList.remove('has-error');
-      errorMsg.classList.add('isHidden');
-
       setEmail(emailInput.value);
       setPassword(passwordInput.value);
       const credentials = {
@@ -38,6 +34,16 @@ function Login() {
         password: password,
       };
       dispatch(login(credentials));
+      console.log(status);
+      if (status === 400) {
+        emailInput.classList.add('has-error');
+        passwordInput.classList.add('has-error');
+        errorMsg.classList.remove('isHidden');
+      } else {
+        emailInput.classList.remove('has-error');
+        passwordInput.classList.remove('has-error');
+        errorMsg.classList.add('isHidden');
+      }
     }
   }
 

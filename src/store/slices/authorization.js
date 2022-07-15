@@ -23,12 +23,14 @@ export const authSlice = createSlice({
     },
     [login.fulfilled]: (state, action) => {
       const { accessToken, status } = action.payload;
+      console.log(action);
       state.loading = false;
-      state.status = status;
+      state.status = action.payload ? status : 400;
       state.token = accessToken;
     },
     [login.rejected]: (state, action) => {
       state.loading = false;
+      state.status = null;
     },
     [fetchUserData.pending]: (state, action) => {
       state.loading = true;

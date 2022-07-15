@@ -3,7 +3,6 @@ import { Outlet } from 'react-router-dom';
 
 function PrivateRoute({ token, ...rest }) {
   const { loading } = useSelector((state) => state.authorization);
-  console.log(`private token : ${token}`);
   if (loading) {
     return <div>Loading...</div>;
   }
