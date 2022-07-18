@@ -5,7 +5,7 @@ import { signOut } from '../../store/slices/authorizationThunk';
 
 function Header() {
   const dispatch = useDispatch();
-  const { token } = useSelector((state) => state.authorization);
+  const { token, userData } = useSelector((state) => state.authorization);
   return (
     <header className="header-nav">
       <NavLink className="header-nav-logo" to="/">
@@ -21,7 +21,7 @@ function Header() {
         <nav className="header-nav-list">
           <p className="header-nav-item">
             <i className="fa fa-user-circle"></i>
-            Sign Out
+            {userData.firstName}
           </p>
           <p className="header-nav-item" onClick={() => dispatch(signOut())}>
             <i className="fa fa-sign-out"></i>
