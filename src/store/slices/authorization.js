@@ -36,9 +36,9 @@ export const authSlice = createSlice({
       state.loading = true;
     },
     [fetchUserData.fulfilled]: (state, action) => {
-      const { accessToken, user } = action.payload;
+      const { accessToken, body } = action.payload;
       state.loading = false;
-      state.userData = user;
+      state.userData = body;
       state.token = accessToken;
     },
     [fetchUserData.rejected]: (state, action) => {

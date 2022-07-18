@@ -1,25 +1,35 @@
 import data from '../../data.json';
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { signOut } from '../../store/slices/authorizationThunk';
 import Account from '../../components/Account/index.jsx';
+import { fetchUserData } from '../../store/slices/authorizationThunk';
 
 function Dashboard() {
   const user = data.user;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUserData);
+  }, [dispatch]);
+
+  const userData = useSelector((state) => state.authorization.userData);
+
   return (
     <main className="main bg-dark">
       <section className="header">
         <h1>
           Welcome back
           <br />
-          {/* <p>
+          <p>
             <span contentEditable="false" id="firstName">
-              Tony
+              {userData.firstName}
             </span>{' '}
             <span contentEditable="false" id="lastName">
-              Jarvis
+              {userData.lastName}
             </span>
             !
-          </p> */}
+          </p>
         </h1>
 
         <button className="edit-button" data-edit="false">
