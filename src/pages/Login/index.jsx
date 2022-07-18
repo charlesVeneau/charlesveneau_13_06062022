@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { getToken } from '../../utils/HelperFunctions';
 import { login } from '../../store/slices/authorizationThunk';
 import { useSelector, useDispatch } from 'react-redux';
