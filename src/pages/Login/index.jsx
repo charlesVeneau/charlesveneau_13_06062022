@@ -35,7 +35,7 @@ function Login() {
       };
       dispatch(login(credentials));
       console.log(status);
-      if (status === 400) {
+      if (status === 400 || !status) {
         emailInput.classList.add('has-error');
         passwordInput.classList.add('has-error');
         errorMsg.classList.remove('isHidden');

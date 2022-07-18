@@ -22,6 +22,9 @@ body,
 
 .main {
   flex: 1;
+  .error {
+    padding-top: 3em;
+  }
 }
 
 .bg-dark {
@@ -40,6 +43,14 @@ body,
   position: absolute !important;
   width: 1px !important;
   white-space: nowrap !important; /* 3 */
+}
+
+button {
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
 }
 
 @import '../pages/App/style.scss';

@@ -22,13 +22,8 @@ function Dashboard() {
           Welcome back
           <br />
           <p>
-            <span contentEditable="false" id="firstName">
-              {userData.firstName}
-            </span>{' '}
-            <span contentEditable="false" id="lastName">
-              {userData.lastName}
-            </span>
-            !
+            <span id="firstName">{userData.firstName}</span>{' '}
+            <span id="lastName">{userData.lastName}</span>!
           </p>
         </h1>
 

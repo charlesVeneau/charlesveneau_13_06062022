@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 
 function PrivateRoute({ token, ...rest }) {
   const { loading } = useSelector((state) => state.authorization);
@@ -11,9 +11,12 @@ function PrivateRoute({ token, ...rest }) {
     return <Outlet />;
   } else {
     return (
-      <div>
-        Une erreur est survenue. Veuillez nous excuser pour la géne occasionnée.
-      </div>
+      <main className="main error">
+        <p className="error-text">An error occurred. Please try again later.</p>
+        <NavLink to="/" className="home-button">
+          Home
+        </NavLink>
+      </main>
     );
   }
 }
