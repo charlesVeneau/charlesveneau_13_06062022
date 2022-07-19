@@ -1,11 +1,25 @@
 import Logo from '../../assets/images/argentBankLogo.png';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { signOut } from '../../store/slices/authorizationThunk';
+import history from '../../utils/history';
 
 function Header() {
   const dispatch = useDispatch();
   const { token, userData } = useSelector((state) => state.authorization);
+  const location = useLocation();
+
+  function logout() {
+    switch (location.pathname) {
+      case '/dashboard':
+        history.push('/');
+        break;
+      default:
+        break;
+    }
+    window.location.reload();
+    dispatch(signOut());
+  }
   return (
     <header className="header-nav">
       <NavLink className="header-nav-logo" to="/">
@@ -23,7 +37,7 @@ function Header() {
             <i className="fa fa-user-circle"></i>
             {userData.firstName}
           </p>
-          <p className="header-nav-item" onClick={() => dispatch(signOut())}>
+          <p className="header-nav-item" onClick={() => logout()}>
             <i className="fa fa-sign-out"></i>
             Sign Out
           </p>

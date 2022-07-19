@@ -53,7 +53,5 @@ export const login = createAsyncThunk(
 );
 
 export const signOut = createAsyncThunk('authorization/signOut', async () => {
-  history.push('/');
-  window.location.reload();
   removeToken();
 });
