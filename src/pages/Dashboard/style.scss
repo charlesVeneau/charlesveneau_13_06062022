@@ -4,6 +4,8 @@
   color: #fff;
   font-weight: bold;
   padding: 10px;
+  margin-top: 2em;
+  cursor: pointer;
 }
 
 .header {
@@ -11,6 +13,12 @@
   margin-bottom: 2rem;
   h1 {
     font-size: 2em;
+    margin-bottom: 0;
+  }
+  &-info {
+    &[data-edit='true'] {
+      display: none;
+    }
   }
 }
 

@@ -34,7 +34,6 @@ function Login() {
         password: password,
       };
       dispatch(login(credentials));
-      console.log(status);
       if (status === 400) {
         emailInput.classList.add('has-error');
         passwordInput.classList.add('has-error');
