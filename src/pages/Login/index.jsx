@@ -5,9 +5,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import history from '../../utils/history';
 
 function Login() {
+  //local state
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const dispatch = useDispatch();
+
   const { token, loading, status } = useSelector(
     (state) => state.authorization
   );
@@ -34,15 +37,6 @@ function Login() {
         password: password,
       };
       dispatch(login(credentials));
-      if (status === 400) {
-        emailInput.classList.add('has-error');
-        passwordInput.classList.add('has-error');
-        errorMsg.classList.remove('isHidden');
-      } else {
-        emailInput.classList.remove('has-error');
-        passwordInput.classList.remove('has-error');
-        errorMsg.classList.add('isHidden');
-      }
     }
   }
 
@@ -60,6 +54,7 @@ function Login() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
               value={email}
+              className={status === 400 && 'has-error'}
             />
           </div>
           <div className="input-wrapper">
@@ -70,9 +65,10 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
               value={password}
+              className={status === 400 && 'has-error'}
             />
           </div>
-          <div className="sign-in-error isHidden">
+          <div className={`sign-in-error ${status !== 400 && 'isHidden'}`}>
             The email or paswword is incorrect
           </div>
           <div className="input-remember">
