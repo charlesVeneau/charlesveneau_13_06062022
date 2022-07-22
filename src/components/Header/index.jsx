@@ -33,10 +33,10 @@ function Header() {
 
       {token ? (
         <nav className="header-nav-list">
-          <p className="header-nav-item">
+          <NavLink className="header-nav-item" to="/dashboard">
             <i className="fa fa-user-circle"></i>
             {userData.firstName}
-          </p>
+          </NavLink>
           <p className="header-nav-item" onClick={() => logout()}>
             <i className="fa fa-sign-out"></i>
             Sign Out

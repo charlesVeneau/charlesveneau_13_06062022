@@ -15,6 +15,9 @@
   &-list {
     display: flex;
     gap: 1em;
+    .header-nav-item {
+      margin: 1em 0;
+    }
   }
   &-item {
     text-decoration: none;
