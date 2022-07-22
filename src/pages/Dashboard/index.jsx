@@ -2,10 +2,8 @@ import UserForm from '../../components/UserForm';
 import data from '../../data.json';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { signOut } from '../../store/slices/authorizationThunk';
 import Account from '../../components/Account/index.jsx';
 import { fetchUserData } from '../../store/slices/authorizationThunk';
-import { isRejected } from '@reduxjs/toolkit';
 
 function Dashboard() {
   const user = data.user;
