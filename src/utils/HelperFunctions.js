@@ -1,11 +1,18 @@
 export const getToken = () => {
-  return localStorage.getItem('token');
+  const rememberMe = localStorage.getItem('rememberMe');
+  return rememberMe
+    ? localStorage.getItem('token')
+    : sessionStorage.getItem('token');
 };
 
 export const removeToken = () => {
-  return localStorage.removeItem('token');
+  localStorage.removeItem('token');
+  localStorage.removeItem('rememberMe');
 };
 
 export const setToken = (value) => {
-  return localStorage.setItem('token', value);
+  const rememberMe = localStorage.getItem('rememberMe');
+  rememberMe
+    ? localStorage.setItem('token', value)
+    : sessionStorage.setItem('token', value);
 };

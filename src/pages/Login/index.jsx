@@ -40,6 +40,10 @@ function Login() {
     }
   }
 
+  function handleRemember(event) {
+    event.target.checked && localStorage.setItem('rememberMe', true);
+  }
+
   return (
     <main className="main bg-dark">
       <section className="sign-in-content">
@@ -54,7 +58,7 @@ function Login() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
               value={email}
-              className={status === 400 && 'has-error'}
+              className={status === 400 ? 'has-error' : undefined}
             />
           </div>
           <div className="input-wrapper">
@@ -65,14 +69,24 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
               value={password}
-              className={status === 400 && 'has-error'}
+              className={status === 400 ? 'has-error' : undefined}
             />
           </div>
-          <div className={`sign-in-error ${status !== 400 && 'isHidden'}`}>
+          <div
+            className={`sign-in-error ${
+              status !== 400 ? 'isHidden' : undefined
+            }`}
+          >
             The email or paswword is incorrect
           </div>
           <div className="input-remember">
-            <input type="checkbox" id="remember-me" />
+            <input
+              type="checkbox"
+              id="remember-me"
+              onChange={(e) => {
+                handleRemember(e);
+              }}
+            />
             <label htmlFor="remember-me">Remember me</label>
           </div>
           <button className="sign-in-button" type="submit">

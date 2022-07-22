@@ -42,8 +42,8 @@ export const login = createAsyncThunk(
         },
       });
       setToken(response.data.body.token);
-      history.push('/dashboard');
-      window.location.reload();
+      // history.push('/dashboard');
+      // window.location.reload();
       return response.data;
     } catch (err) {
       removeToken();
