@@ -3,22 +3,34 @@ import data from '../../data.json';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Account from '../../components/Account/index.jsx';
-import { fetchUserData } from '../../store/slices/authorizationThunk';
+import {
+  fetchUserData,
+  updateUserData,
+} from '../../store/slices/authorizationThunk';
 
 function Dashboard() {
   const user = data.user;
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
 
+  const userData = useSelector((state) => state.authorization.userData);
+
   useEffect(() => {
     dispatch(fetchUserData);
   }, [dispatch]);
 
-  const userData = useSelector((state) => state.authorization.userData);
-
   function handleChange(e) {
     e.preventDefault();
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
     setIsEditing((isEditing) => !isEditing);
+    if (e.target.getAttribute('data-edit') === 'true') {
+      const identity = {
+        firstName: firstName,
+        lastName: lastName,
+      };
+      dispatch(updateUserData(identity));
+    }
   }
 
   return (
@@ -28,10 +40,20 @@ function Dashboard() {
           Welcome back
           <br />
           {isEditing ? (
-            <UserForm
-              firstName={userData.firstName}
-              lastName={userData.lastName}
-            />
+            <div className="userForm">
+              <input
+                className="userForm-input"
+                id="firstName"
+                type="text"
+                defaultValue={userData.firstName}
+              />
+              <input
+                className="userForm-input"
+                id="lastName"
+                type="text"
+                defaultValue={userData.lastName}
+              />
+            </div>
           ) : (
             <span className="header-info">
               <span id="firstName">{userData.firstName}</span>{' '}

@@ -1,8 +1,31 @@
 import { createAsyncThunk, isRejectedWithValue } from '@reduxjs/toolkit';
-import { useLocation } from 'react-router-dom';
 import { getToken, setToken, removeToken } from '../../utils/HelperFunctions';
-import history from '../../utils/history';
 import axios from 'axios';
+
+export const login = createAsyncThunk(
+  'authorization/login',
+  async (credentials) => {
+    const { email, password } = credentials;
+    try {
+      const response = await axios({
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+        url: 'http://localhost:3001/api/v1/user/login',
+        data: {
+          email: email,
+          password: password,
+        },
+      });
+      setToken(response.data.body.token);
+      return response.data;
+    } catch (err) {
+      removeToken();
+      return isRejectedWithValue(400);
+    }
+  }
+);
 
 export const fetchUserData = createAsyncThunk(
   'authorization/fetchUserData',
@@ -25,26 +48,25 @@ export const fetchUserData = createAsyncThunk(
   }
 );
 
-export const login = createAsyncThunk(
-  'authorization/login',
-  async (credentials) => {
-    const { email, password } = credentials;
+export const updateUserData = createAsyncThunk(
+  'authorization/updateUserData',
+  async (identity) => {
+    const { firstName, lastName } = identity;
     try {
+      const accessToken = getToken();
       const response = await axios({
+        method: 'put',
+        url: 'http://localhost:3001/api/v1/user/profile',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`,
         },
-        method: 'POST',
-        url: 'http://localhost:3001/api/v1/user/login',
         data: {
-          email: email,
-          password: password,
+          firstName: firstName,
+          lastName: lastName,
         },
       });
-      setToken(response.data.body.token);
-      // history.push('/dashboard');
-      // window.location.reload();
-      return response.data;
+      return { ...response.data };
     } catch (err) {
       removeToken();
       return isRejectedWithValue(400);

@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getToken } from '../../utils/HelperFunctions';
 import { login } from '../../store/slices/authorizationThunk';
 import { useSelector, useDispatch } from 'react-redux';
 import history from '../../utils/history';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   //local state
@@ -10,6 +11,7 @@ function Login() {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
+  const Navigate = useNavigate();
 
   const { token, loading, status } = useSelector(
     (state) => state.authorization
@@ -19,6 +21,11 @@ function Login() {
     history.push('/dashboard');
     window.location.reload();
   }
+  // useEffect(() => {
+  //   if (token || getToken()) {
+  //     Navigate('/dashboard');
+  //   }
+  // }, [Navigate, token]);
 
   function handleLogin(e) {
     e.preventDefault();
@@ -36,7 +43,7 @@ function Login() {
         email: email,
         password: password,
       };
-      dispatch(login(credentials));
+      dispatch(login(credentials, Navigate));
     }
   }
 

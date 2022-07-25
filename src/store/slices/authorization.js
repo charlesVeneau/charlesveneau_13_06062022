@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchUserData, login, signOut } from './authorizationThunk';
+import {
+  fetchUserData,
+  updateUserData,
+  login,
+  signOut,
+} from './authorizationThunk';
 
 const initialState = {
   token: null,
@@ -45,6 +50,17 @@ export const authSlice = createSlice({
       state.loading = false;
       state.userData = {};
       state.token = null;
+    },
+    [updateUserData.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [updateUserData.fulfilled]: (state, action) => {
+      const { body } = action.payload;
+      console.log(body);
+      state.loading = false;
+      state.userData.firstName = body.firstName;
+      state.userData.lastName = body.lastName;
+      //state.token = accessToken;
     },
   },
 });

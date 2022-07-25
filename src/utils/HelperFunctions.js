@@ -7,6 +7,7 @@ export const getToken = () => {
 
 export const removeToken = () => {
   localStorage.removeItem('token');
+  sessionStorage.removeItem('token');
   localStorage.removeItem('rememberMe');
 };
 
