@@ -1,10 +1,12 @@
+@import '../../Sass/variables';
+
 .home-button {
   padding: 8px;
   font-size: 1.1rem;
   font-weight: bold;
   margin-top: 1rem;
-  border-color: #00bc77;
-  background-color: #00bc77;
+  border-color: $secondary;
+  background-color: $secondary;
   color: #fff;
   margin-top: 2em;
   text-decoration: none;
