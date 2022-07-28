@@ -28,7 +28,6 @@ export const authSlice = createSlice({
     },
     [login.fulfilled]: (state, action) => {
       const { body, status } = action.payload;
-      console.log(action);
       state.loading = false;
       state.status = action.payload ? status : 400;
       state.token = body.token;
@@ -60,7 +59,6 @@ export const authSlice = createSlice({
       state.loading = false;
       state.userData.firstName = body.firstName;
       state.userData.lastName = body.lastName;
-      //state.token = accessToken;
     },
   },
 });

@@ -1,4 +1,3 @@
-import UserForm from '../../components/UserForm';
 import data from '../../data.json';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,10 +20,12 @@ function Dashboard() {
 
   function handleChange(e) {
     e.preventDefault();
+
     const firstName = document.getElementById('firstName').value;
     const lastName = document.getElementById('lastName').value;
+
     setIsEditing((isEditing) => !isEditing);
-    if (e.target.getAttribute('data-edit') === 'true') {
+    if (isEditing) {
       const identity = {
         firstName: firstName,
         lastName: lastName,
@@ -57,15 +58,11 @@ function Dashboard() {
           ) : (
             <span className="header-info">
               <span id="firstName">{userData.firstName}</span>{' '}
-              <span id="lastName">{userData.lastName}</span>!
+              <span id="lastName">{userData.lastName}</span> !
             </span>
           )}
         </h1>
-        <button
-          className="edit-button"
-          data-edit={isEditing}
-          onClick={handleChange}
-        >
+        <button className="edit-button" onClick={handleChange}>
           {isEditing ? 'Update Name' : 'Edit Name'}
         </button>
       </section>
